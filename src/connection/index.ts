@@ -185,8 +185,8 @@ const coinbaseWalletConnection: Connection = {
 }
 
 export const connections = [
-  injectedConnection,
   coinbaseWalletConnection,
+  injectedConnection,
   gnosisSafeConnection,
   uniwalletWCV2ConnectConnection,
   walletConnectV2Connection,
