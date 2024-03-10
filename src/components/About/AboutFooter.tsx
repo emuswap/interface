@@ -145,9 +145,9 @@ export const AboutFooter = () => {
   const shouldDisableNFTRoutes = useDisableNFTRoutes()
   return (
     <Footer>
-      <LogoSectionLeft>
+      {/* <LogoSectionLeft>
         <LogoSectionContent />
-      </LogoSectionLeft>
+      </LogoSectionLeft> */}
 
       <FooterLinks>
         <LinkGroup>
@@ -157,7 +157,7 @@ export const AboutFooter = () => {
           {!shouldDisableNFTRoutes && <TextLink to="/nfts">NFTs</TextLink>}
           <TextLink to="/pools">Pools</TextLink>
         </LinkGroup>
-        <LinkGroup>
+        {/* <LinkGroup>
           <LinkGroupTitle>Protocol</LinkGroupTitle>
           <ExternalTextLink href="#">Community</ExternalTextLink>
           <ExternalTextLink href="#">Governance</ExternalTextLink>
@@ -180,24 +180,22 @@ export const AboutFooter = () => {
           >
             <ExternalTextLink href="#">Blog</ExternalTextLink>
           </TraceEvent>
-        </LinkGroup>
+        </LinkGroup> */}
         <LinkGroup>
-          <LinkGroupTitle>Get Help</LinkGroupTitle>
+          <LinkGroupTitle>Community</LinkGroupTitle>
           <TraceEvent
             events={[BrowserEvent.onClick]}
             name={SharedEventName.ELEMENT_CLICKED}
             element={InterfaceElementName.SUPPORT_LINK}
           >
-            <ExternalTextLink href="#" target="_blank" rel="noopener noreferrer">
-              Contact Us
-            </ExternalTextLink>
+            <ExternalTextLink href="https://docs.emuswap.com/">Documentation</ExternalTextLink>
           </TraceEvent>
           <TraceEvent
             events={[BrowserEvent.onClick]}
             name={SharedEventName.ELEMENT_CLICKED}
             element={InterfaceElementName.SUPPORT_LINK}
           >
-            <ExternalTextLink href="#">Help Center</ExternalTextLink>
+            <ExternalTextLink href="https://twitter.com/_emuswap">Twitter</ExternalTextLink>
           </TraceEvent>
         </LinkGroup>
       </FooterLinks>

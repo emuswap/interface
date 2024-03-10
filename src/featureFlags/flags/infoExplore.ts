@@ -5,5 +5,5 @@ export function useInfoExploreFlag(): BaseVariant {
 }
 
 export function useInfoExplorePageEnabled(): boolean {
-  return useInfoExploreFlag() === BaseVariant.Enabled
+  return useInfoExploreFlag() === BaseVariant.Control
 }

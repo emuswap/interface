@@ -1,31 +1,17 @@
 import { t, Trans } from '@lingui/macro'
-import { InterfaceElementName } from '@uniswap/analytics-events'
-import { ReactComponent as AppleLogo } from 'assets/svg/apple_logo.svg'
-import { ReactComponent as CoinbaseAppLogo } from 'assets/wallets/coinbase-icon.svg'
 import FeatureFlagModal from 'components/FeatureFlagModal/FeatureFlagModal'
 import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
 import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import { Box } from 'nft/components/Box'
 import { Column, Row } from 'nft/components/Flex'
-import {
-  BarChartIcon,
-  DiscordIconMenu,
-  EllipsisIcon,
-  GithubIconMenu,
-  GovernanceIcon,
-  PoolIcon,
-  TwitterIconMenu,
-} from 'nft/components/icons'
+import { EllipsisIcon, GovernanceIcon, PoolIcon } from 'nft/components/icons'
 import { body, bodySmall } from 'nft/css/common.css'
-import { themeVars } from 'nft/css/sprinkles.css'
 import { ReactNode, useReducer, useRef } from 'react'
+import { Twitter } from 'react-feather'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import { useToggleModal } from 'state/application/hooks'
 import styled, { useTheme } from 'styled-components'
-import { ThemedText } from 'theme/components'
-import { isDevelopmentEnv, isStagingEnv } from 'utils/env'
-import { openDownloadApp } from 'utils/openDownloadApp'
 
 import { ApplicationModal } from '../../state/application/reducer'
 import * as styles from './MenuDropdown.css'
@@ -155,23 +141,23 @@ export const MenuDropdown = () => {
                     </PrimaryMenuRow.Text>
                   </PrimaryMenuRow>
                 </Box>
-                <PrimaryMenuRow to="/vote" close={toggleOpen}>
+                <PrimaryMenuRow href="https://docs.emuswap.com" close={toggleOpen}>
                   <Icon>
                     <GovernanceIcon width={24} height={24} color={theme.neutral1} />
                   </Icon>
                   <PrimaryMenuRow.Text>
-                    <Trans>Vote with ECO</Trans>
+                    <Trans>Documentation</Trans>
                   </PrimaryMenuRow.Text>
                 </PrimaryMenuRow>
-                <PrimaryMenuRow href="https://info.etcswap.org/#/">
+                <PrimaryMenuRow href="https://x.com/_emuswap">
                   <Icon>
-                    <BarChartIcon width={24} height={24} color={theme.neutral1} />
+                    <Twitter width={24} height={24} color={theme.neutral1} />
                   </Icon>
                   <PrimaryMenuRow.Text>
-                    <Trans>View more analytics</Trans>
+                    <Trans>Twitter</Trans>
                   </PrimaryMenuRow.Text>
                 </PrimaryMenuRow>
-                <Box
+                {/* <Box
                   onClick={() =>
                     openDownloadApp({
                       element: InterfaceElementName.UNISWAP_WALLET_NAVBAR_MENU_DOWNLOAD_BUTTON,
@@ -205,9 +191,9 @@ export const MenuDropdown = () => {
                       </>
                     )}
                   </PrimaryMenuRow>
-                </Box>
+                </Box> */}
               </Column>
-              <Separator />
+              {/* <Separator />
               <Box
                 display="flex"
                 flexDirection={{ sm: 'row', md: 'column' }}
@@ -247,7 +233,7 @@ export const MenuDropdown = () => {
                 <Icon href="https://github.com/etcswap">
                   <GithubIconMenu className={styles.hover} width={24} height={24} color={themeVars.colors.neutral2} />
                 </Icon>
-              </IconRow>
+              </IconRow> */}
             </Column>
           </NavDropdown>
         )}

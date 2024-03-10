@@ -87,22 +87,14 @@ const ProtocolBanner = () => {
   return (
     <Banner isDarkMode={isDarkMode}>
       <TextContainer>
-        <HeaderText>Powered by Ethereum Classic</HeaderText>
+        <HeaderText>Powered across multiple layers</HeaderText>
         <DescriptionText>
-          Applications on Ethereum Classic have been operating uninterrupted for a year longer than on Ethereum™
-          Foundation, making ETC the longest running and most reliable Smart Contract Platform. More importantly,
-          Ethereum Classic has never and will never stop or interfere with Smart Contracts deployed to it, as
-          unstoppability is what makes blockchains useful and valuable.
+          Emuswap is a multi-chain decentralized exchange (DEX) that runs on the multiple blockchains. Our goal is to
+          deploy on as many chains as possible with the same user experience and features.
         </DescriptionText>
       </TextContainer>
       <BannerButtonContainer>
-        <BannerButton
-          width="200px"
-          as="a"
-          href="https://ethereumclassic.org/why-classic"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <BannerButton width="200px" as="a" href="https://docs.emuswap.com/" rel="noopener noreferrer" target="_blank">
           Learn more
         </BannerButton>
       </BannerButtonContainer>

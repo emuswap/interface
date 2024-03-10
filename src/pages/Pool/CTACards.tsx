@@ -67,17 +67,17 @@ export default function CTACards() {
 
   return (
     <CTASection>
-      <CTA href="https://support.uniswap.org/hc/en-us/categories/8122334631437-Providing-Liquidity-">
+      <CTA href="https://docs.emuswap.com">
         <ResponsiveColumn>
           <HeaderText>
             <Trans>Learn about providing liquidity</Trans> ↗
           </HeaderText>
           <ThemedText.DeprecatedBody style={{ alignItems: 'center', display: 'flex', fontWeight: 485 }}>
-            <Trans>Check out our v3 LP walkthrough and migration guides.</Trans>
+            <Trans>Check out our v3 LP walkthrough.</Trans>
           </ThemedText.DeprecatedBody>
         </ResponsiveColumn>
       </CTA>
-      <CTA data-testid="cta-infolink" href={infoLink + 'pools'}>
+      {/* <CTA data-testid="cta-infolink" href={infoLink + 'pools'}>
         <ResponsiveColumn>
           <HeaderText style={{ alignSelf: 'flex-start' }}>
             <Trans>Top pools</Trans> ↗
@@ -86,7 +86,7 @@ export default function CTACards() {
             <Trans>Explore ETCswap Analytics.</Trans>
           </ThemedText.DeprecatedBody>
         </ResponsiveColumn>
-      </CTA>
+      </CTA> */}
     </CTASection>
   )
 }

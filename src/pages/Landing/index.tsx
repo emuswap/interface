@@ -1,14 +1,12 @@
 import { Trans } from '@lingui/macro'
 import { BrowserEvent, InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
 import { Trace, TraceEvent } from 'analytics'
-import { ReactComponent as CoinbaseAppLogo } from 'assets/wallets/coinbase-icon.svg'
 import { AboutFooter } from 'components/About/AboutFooter'
 import Card, { CardType } from 'components/About/Card'
 import { MAIN_CARDS, MORE_CARDS } from 'components/About/constants'
 import ProtocolBanner from 'components/About/ProtocolBanner'
 import { useAccountDrawer } from 'components/AccountDrawer'
 import { BaseButton } from 'components/Button'
-import { AppleLogo } from 'components/Logo/AppleLogo'
 import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import Swap from 'pages/Swap'
@@ -22,7 +20,6 @@ import { BREAKPOINTS } from 'theme'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import { TRANSITION_DURATIONS } from 'theme/styles'
 import { Z_INDEX } from 'theme/zIndex'
-import { getDownloadAppLinkProps } from 'utils/openDownloadApp'
 
 const PageContainer = styled.div`
   position: absolute;
@@ -362,7 +359,7 @@ export default function Landing() {
         <ContentContainer isDarkMode={isDarkMode}>
           <TitleText isDarkMode={isDarkMode}>
             {shouldDisableNFTRoutes ? (
-              <Trans>Trade Crypto on Ethereum Classic</Trans>
+              <Trans>Trade Crypto on the Newest Layers</Trans>
             ) : (
               <Trans>Trade Crypto and NFTs on Ethereum Classic</Trans>
             )}
@@ -405,7 +402,7 @@ export default function Landing() {
             <Trans>Learn more</Trans>
           </LearnMoreContainer>
 
-          <DownloadWalletLink
+          {/* <DownloadWalletLink
             {...getDownloadAppLinkProps({
               element: InterfaceElementName.UNISWAP_WALLET_LANDING_PAGE_DOWNLOAD_BUTTON,
               isAndroidGALaunched,
@@ -422,7 +419,7 @@ export default function Landing() {
                 Download the Coinbase Wallet for iOS
               </>
             )}
-          </DownloadWalletLink>
+          </DownloadWalletLink> */}
         </ContentContainer>
         <AboutContentContainer isDarkMode={isDarkMode}>
           <CardGrid cols={cards.length} ref={cardsRef}>

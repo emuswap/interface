@@ -2,12 +2,7 @@ import Badge from 'components/Badge'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 import { getChainInfo } from 'constants/chainInfo'
 import { useInfoExplorePageEnabled } from 'featureFlags/flags/infoExplore'
-import {
-  BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS,
-  BACKEND_SUPPORTED_CHAINS,
-  supportedChainIdFromGQLChain,
-  validateUrlChainParam,
-} from 'graphql/data/util'
+import { BACKEND_SUPPORTED_CHAINS, supportedChainIdFromGQLChain, validateUrlChainParam } from 'graphql/data/util'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import { useExploreParams } from 'pages/Explore/redirects'
 import { useRef } from 'react'
@@ -199,7 +194,7 @@ export default function NetworkFilter() {
               </InternalLinkMenuItem>
             )
           })}
-          {BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS.map((network) => {
+          {/* {BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS.map((network) => {
             const chainInfo = getChainInfo(network)
             return (
               <InternalLinkMenuItem
@@ -213,7 +208,7 @@ export default function NetworkFilter() {
                 <Tag>Coming soon</Tag>
               </InternalLinkMenuItem>
             )
-          })}
+          })} */}
         </MenuTimeFlyout>
       )}
     </StyledMenu>
