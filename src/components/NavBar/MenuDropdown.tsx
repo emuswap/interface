@@ -1,19 +1,16 @@
 import { t, Trans } from '@lingui/macro'
 import FeatureFlagModal from 'components/FeatureFlagModal/FeatureFlagModal'
 import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
-import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import { Box } from 'nft/components/Box'
 import { Column, Row } from 'nft/components/Flex'
-import { EllipsisIcon, GovernanceIcon, PoolIcon } from 'nft/components/icons'
-import { body, bodySmall } from 'nft/css/common.css'
+import { ApprovedCheckmarkIcon, EllipsisIcon, GovernanceIcon, PoolIcon } from 'nft/components/icons'
+import { body } from 'nft/css/common.css'
 import { ReactNode, useReducer, useRef } from 'react'
 import { Twitter } from 'react-feather'
 import { NavLink, NavLinkProps } from 'react-router-dom'
-import { useToggleModal } from 'state/application/hooks'
 import styled, { useTheme } from 'styled-components'
 
-import { ApplicationModal } from '../../state/application/reducer'
 import * as styles from './MenuDropdown.css'
 import { NavDropdown } from './NavDropdown'
 import { NavIcon } from './NavIcon'
@@ -55,38 +52,6 @@ const PrimaryMenuRowText = ({ children }: { children: ReactNode }) => {
 
 PrimaryMenuRow.Text = PrimaryMenuRowText
 
-const SecondaryLinkedText = ({
-  href,
-  onClick,
-  children,
-}: {
-  href?: string
-  onClick?: () => void
-  children: ReactNode
-}) => {
-  return (
-    <Box
-      as={href ? 'a' : 'div'}
-      href={href ?? undefined}
-      target={href ? '_blank' : undefined}
-      rel={href ? 'noopener noreferrer' : undefined}
-      className={`${styles.SecondaryText} ${bodySmall}`}
-      onClick={onClick}
-      cursor="pointer"
-    >
-      {children}
-    </Box>
-  )
-}
-
-const Separator = () => {
-  return <Box className={styles.Separator} />
-}
-
-const IconRow = ({ children }: { children: ReactNode }) => {
-  return <Row className={styles.IconRow}>{children}</Row>
-}
-
 const Icon = ({ href, children }: { href?: string; children: ReactNode }) => {
   return (
     <>
@@ -113,12 +78,8 @@ const Icon = ({ href, children }: { href?: string; children: ReactNode }) => {
 export const MenuDropdown = () => {
   const theme = useTheme()
   const [isOpen, toggleOpen] = useReducer((s) => !s, false)
-  const togglePrivacyPolicy = useToggleModal(ApplicationModal.PRIVACY_POLICY)
-  const openFeatureFlagsModal = useToggleModal(ApplicationModal.FEATURE_FLAGS)
   const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, isOpen ? toggleOpen : undefined)
-
-  const isAndroidGALaunched = useAndroidGALaunchFlagEnabled()
 
   return (
     <>
@@ -141,6 +102,14 @@ export const MenuDropdown = () => {
                     </PrimaryMenuRow.Text>
                   </PrimaryMenuRow>
                 </Box>
+                <PrimaryMenuRow href="https://tally.so/r/w72Bk0" close={toggleOpen}>
+                  <Icon>
+                    <ApprovedCheckmarkIcon width={24} height={24} color={theme.neutral1} />
+                  </Icon>
+                  <PrimaryMenuRow.Text>
+                    <Trans>Partnership</Trans>
+                  </PrimaryMenuRow.Text>
+                </PrimaryMenuRow>
                 <PrimaryMenuRow href="https://docs.emuswap.com" close={toggleOpen}>
                   <Icon>
                     <GovernanceIcon width={24} height={24} color={theme.neutral1} />
@@ -157,83 +126,7 @@ export const MenuDropdown = () => {
                     <Trans>Twitter</Trans>
                   </PrimaryMenuRow.Text>
                 </PrimaryMenuRow>
-                {/* <Box
-                  onClick={() =>
-                    openDownloadApp({
-                      element: InterfaceElementName.UNISWAP_WALLET_NAVBAR_MENU_DOWNLOAD_BUTTON,
-                      isAndroidGALaunched,
-                    })
-                  }
-                >
-                  <PrimaryMenuRow close={toggleOpen}>
-                    {isAndroidGALaunched ? (
-                      <>
-                        <Icon>
-                          <CoinbaseAppLogo width="24px" height="24px" />
-                        </Icon>
-                        <div>
-                          <ThemedText.BodyPrimary>
-                            <Trans>Download Coinbase Wallet</Trans>
-                          </ThemedText.BodyPrimary>
-                          <ThemedText.LabelSmall>
-                            <Trans>Available on iOS and Android</Trans>
-                          </ThemedText.LabelSmall>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <Icon>
-                          <AppleLogo width="24px" height="24px" fill={theme.neutral1} />
-                        </Icon>
-                        <PrimaryMenuRow.Text>
-                          <Trans>Download Coinbase Wallet</Trans>
-                        </PrimaryMenuRow.Text>
-                      </>
-                    )}
-                  </PrimaryMenuRow>
-                </Box> */}
               </Column>
-              {/* <Separator />
-              <Box
-                display="flex"
-                flexDirection={{ sm: 'row', md: 'column' }}
-                flexWrap="wrap"
-                alignItems={{ sm: 'center', md: 'flex-start' }}
-                paddingX="8"
-              >
-                <SecondaryLinkedText href="https://docs.etcswap.org/">
-                  <Trans>Documentation</Trans> ↗
-                </SecondaryLinkedText>
-                <SecondaryLinkedText
-                  onClick={() => {
-                    toggleOpen()
-                    togglePrivacyPolicy()
-                  }}
-                >
-                  <Trans>Legal & Privacy</Trans> ↗
-                </SecondaryLinkedText>
-                {(isDevelopmentEnv() || isStagingEnv()) && (
-                  <SecondaryLinkedText
-                    onClick={() => {
-                      toggleOpen()
-                      openFeatureFlagsModal()
-                    }}
-                  >
-                    <Trans>Feature Flags</Trans>
-                  </SecondaryLinkedText>
-                )}
-              </Box>
-              <IconRow>
-                <Icon href="https://ethereumclassic.org/discord">
-                  <DiscordIconMenu className={styles.hover} width={24} height={24} color={themeVars.colors.neutral2} />
-                </Icon>
-                <Icon href="https://twitter.com/EthClassicDAO">
-                  <TwitterIconMenu className={styles.hover} width={24} height={24} color={themeVars.colors.neutral2} />
-                </Icon>
-                <Icon href="https://github.com/etcswap">
-                  <GithubIconMenu className={styles.hover} width={24} height={24} color={themeVars.colors.neutral2} />
-                </Icon>
-              </IconRow> */}
             </Column>
           </NavDropdown>
         )}

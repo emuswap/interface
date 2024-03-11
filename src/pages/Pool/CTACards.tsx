@@ -1,7 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { useWeb3React } from '@web3-react/core'
 import { AutoColumn } from 'components/Column'
-import { getChainInfoOrDefault } from 'constants/chainInfo'
 import styled from 'styled-components'
 import { ThemedText } from 'theme/components'
 import { ExternalLink } from 'theme/components'
@@ -62,9 +60,6 @@ const ResponsiveColumn = styled(AutoColumn)`
 `
 
 export default function CTACards() {
-  const { chainId } = useWeb3React()
-  const { infoLink } = getChainInfoOrDefault(chainId)
-
   return (
     <CTASection>
       <CTA href="https://docs.emuswap.com">
@@ -77,16 +72,6 @@ export default function CTACards() {
           </ThemedText.DeprecatedBody>
         </ResponsiveColumn>
       </CTA>
-      {/* <CTA data-testid="cta-infolink" href={infoLink + 'pools'}>
-        <ResponsiveColumn>
-          <HeaderText style={{ alignSelf: 'flex-start' }}>
-            <Trans>Top pools</Trans> ↗
-          </HeaderText>
-          <ThemedText.DeprecatedBody style={{ alignSelf: 'flex-start', fontWeight: 485 }}>
-            <Trans>Explore ETCswap Analytics.</Trans>
-          </ThemedText.DeprecatedBody>
-        </ResponsiveColumn>
-      </CTA> */}
     </CTASection>
   )
 }

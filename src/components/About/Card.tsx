@@ -1,5 +1,7 @@
 import { BrowserEvent, SharedEventName } from '@uniswap/analytics-events'
+import { useWeb3React } from '@web3-react/core'
 import { TraceEvent } from 'analytics'
+import { getChainInfo } from 'constants/chainInfo'
 import { Link } from 'react-router-dom'
 import styled, { DefaultTheme } from 'styled-components'
 import { BREAKPOINTS } from 'theme'
@@ -85,7 +87,8 @@ const CardDescription = styled.div<{ type: CardType }>`
 `
 
 const CardCTA = styled(CardDescription)`
-  color: ${({ theme }) => theme.accent1};
+  color: ${({ theme, type }) => getCardDescriptionColor(type, theme)};
+  text-decoration: underline;
   font-weight: 535;
   margin: 24px 0 0;
   cursor: pointer;
@@ -118,6 +121,8 @@ const Card = ({
   icon?: React.ReactNode
   elementName?: string
 }) => {
+  const { chainId } = useWeb3React()
+  const chainInfo = getChainInfo(chainId)
   const isDarkMode = useIsDarkMode()
   return (
     <TraceEvent events={[BrowserEvent.onClick]} name={SharedEventName.ELEMENT_CLICKED} element={elementName}>
@@ -137,7 +142,9 @@ const Card = ({
         </TitleRow>
         <CardDescription type={type}>
           {description}
-          <CardCTA type={type}>{cta}</CardCTA>
+          <CardCTA type={type} color={chainInfo?.color}>
+            {cta}
+          </CardCTA>
         </CardDescription>
       </StyledCard>
     </TraceEvent>

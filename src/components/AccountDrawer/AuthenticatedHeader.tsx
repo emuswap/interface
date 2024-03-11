@@ -160,7 +160,7 @@ export default function AuthenticatedHeader({ account, openSettings }: { account
   const resetSellAssets = useSellAsset((state) => state.reset)
   const clearCollectionFilters = useWalletCollections((state) => state.clearCollectionFilters)
   const isClaimAvailable = useIsNftClaimAvailable((state) => state.isClaimAvailable)
-  const shouldShowBuyFiatButton = !isPathBlocked('/buy')
+  const shouldShowBuyFiatButton = !isPathBlocked('/buy') && false
   const { formatNumber, formatDelta } = useFormatter()
 
   const shouldDisableNFTRoutes = useDisableNFTRoutes()

@@ -1,13 +1,13 @@
 import { Trans } from '@lingui/macro'
 import { BrowserEvent, InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
+import { useWeb3React } from '@web3-react/core'
 import { Trace, TraceEvent } from 'analytics'
 import { AboutFooter } from 'components/About/AboutFooter'
 import Card, { CardType } from 'components/About/Card'
 import { MAIN_CARDS, MORE_CARDS } from 'components/About/constants'
-import ProtocolBanner from 'components/About/ProtocolBanner'
 import { useAccountDrawer } from 'components/AccountDrawer'
 import { BaseButton } from 'components/Button'
-import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
+import { getChainInfo } from 'constants/chainInfo'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import Swap from 'pages/Swap'
 import { parse } from 'qs'
@@ -73,11 +73,15 @@ const GlowContainer = styled.div`
   }
 `
 
-const Glow = styled.div`
+const Glow = styled.div<{ color?: string }>`
   position: absolute;
   top: 68px;
   bottom: 0;
-  background: radial-gradient(72.04% 72.04% at 50% 3.99%, #33ff99 0%, rgba(51, 255, 153, 0.05) 100%);
+  background: radial-gradient(
+    72.04% 72.04% at 50% 3.99%,
+    ${({ theme, color }) => color || theme.accent1} 0%,
+    rgba(51, 255, 153, 0.05) 100%
+  );
   filter: blur(72px);
   border-radius: 24px;
   max-width: 480px;
@@ -104,37 +108,28 @@ const ContentContainer = styled.div<{ isDarkMode: boolean }>`
   }
 `
 
-const DownloadWalletLink = styled.a`
-  display: inline-flex;
-  gap: 8px;
-  margin-top: 24px;
-  color: ${({ theme }) => theme.neutral2};
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 535;
-  text-align: center;
-  align-items: center;
-
-  :hover {
-    color: ${({ theme }) => theme.neutral3};
-  }
-`
-
-const TitleText = styled.h1<{ isDarkMode: boolean }>`
+const TitleText = styled.h1<{ isDarkMode: boolean; color?: string }>`
   color: transparent;
   font-size: 36px;
   line-height: 44px;
   font-weight: 535;
   text-align: center;
   margin: 0 0 24px;
-  ${({ isDarkMode }) =>
+  ${({ isDarkMode, color }) =>
     isDarkMode
       ? css`
-          background: linear-gradient(20deg, rgba(230, 255, 242, 1) 10%, rgba(51, 255, 153, 1) 100%);
+          background: linear-gradient(
+            20deg,
+            ${color ? '#' + (parseInt(color.split('#')[1], 16) - 50).toString(16) : 'rgba(230, 255, 242, 1)'} 10%,
+            ${color || 'rgba(51, 255, 153, 1)'} 100%
+          );
         `
       : css`
-          background: linear-gradient(10deg, rgba(51, 255, 153, 1) 0%, rgba(153, 255, 201, 1) 100%);
+          background: linear-gradient(
+            10deg,
+            ${color || 'rgba(51, 255, 153, 1)'} 0%,
+            ${color ? '#' + (parseInt(color.split('#')[1], 16) - 50).toString(16) : 'rgba(230, 255, 242, 1)'} 100%
+          );
         `};
   background-clip: text;
   -webkit-background-clip: text;
@@ -175,10 +170,14 @@ const LandingButton = styled(BaseButton)`
   border-radius: 24px;
 `
 
-const ButtonCTA = styled(LandingButton)`
-  background: linear-gradient(93.06deg, #00cc66 2.66%, #33ff99 98.99%);
+const ButtonCTA = styled(LandingButton)<{ color?: string }>`
+  background: linear-gradient(
+    93.06deg,
+    ${({ color }) => color || '#00cc66'} 2.66%,
+    ${({ color }) => (color ? '#' + (parseInt(color.split('#')[1], 16) - 50).toString(16) : '#33ff99')} 98.99%
+  );
   border: none;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.neutral3};
   transition: ${({ theme }) => `all ${theme.transition.duration.medium} ${theme.transition.timing.ease}`};
 
   &:hover {
@@ -286,7 +285,7 @@ const SwapCss = css`
   }
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-10px);
     transition: ${({ theme }) => `transform ${theme.transition.duration.medium} ${theme.transition.timing.ease}`};
   }
 `
@@ -299,9 +298,6 @@ const LinkCss = css`
 
 const LandingSwap = styled(Swap)`
   ${SwapCss}
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.accent1};
-  }
 `
 
 const Link = styled(NativeLink)`
@@ -309,6 +305,8 @@ const Link = styled(NativeLink)`
 `
 
 export default function Landing() {
+  const { chainId } = useWeb3React()
+  const chainInfo = getChainInfo(chainId)
   const isDarkMode = useIsDarkMode()
   const cardsRef = useRef<HTMLDivElement>(null)
   const selectedWallet = useAppSelector((state) => state.user.selectedWallet)
@@ -318,8 +316,6 @@ export default function Landing() {
     () => MAIN_CARDS.filter((card) => !(shouldDisableNFTRoutes && card.to.startsWith('/nft'))),
     [shouldDisableNFTRoutes]
   )
-
-  const isAndroidGALaunched = useAndroidGALaunchFlagEnabled()
 
   const [accountDrawerOpen] = useAccountDrawer()
   const navigate = useNavigate()
@@ -354,12 +350,12 @@ export default function Landing() {
         </LandingSwapContainer>
         <Gradient isDarkMode={isDarkMode} />
         <GlowContainer>
-          <Glow />
+          <Glow color={chainInfo?.color} />
         </GlowContainer>
         <ContentContainer isDarkMode={isDarkMode}>
-          <TitleText isDarkMode={isDarkMode}>
+          <TitleText isDarkMode={isDarkMode} color={chainInfo?.color}>
             {shouldDisableNFTRoutes ? (
-              <Trans>Trade Crypto on the Newest Layers</Trans>
+              <Trans>Trade Tokens on the Latest Layers</Trans>
             ) : (
               <Trans>Trade Crypto and NFTs on Ethereum Classic</Trans>
             )}
@@ -387,7 +383,7 @@ export default function Landing() {
               name={SharedEventName.ELEMENT_CLICKED}
               element={InterfaceElementName.CONTINUE_BUTTON}
             >
-              <ButtonCTA as={Link} to="/swap">
+              <ButtonCTA as={Link} to="/swap" color={chainInfo?.color}>
                 <ButtonCTAText>
                   <Trans>Get started</Trans>
                 </ButtonCTAText>
@@ -401,25 +397,6 @@ export default function Landing() {
           >
             <Trans>Learn more</Trans>
           </LearnMoreContainer>
-
-          {/* <DownloadWalletLink
-            {...getDownloadAppLinkProps({
-              element: InterfaceElementName.UNISWAP_WALLET_LANDING_PAGE_DOWNLOAD_BUTTON,
-              isAndroidGALaunched,
-            })}
-          >
-            {isAndroidGALaunched ? (
-              <>
-                <CoinbaseAppLogo width="20" height="20" />
-                Download the Coinbase Wallet
-              </>
-            ) : (
-              <>
-                <AppleLogo width="20" height="20" />
-                Download the Coinbase Wallet for iOS
-              </>
-            )}
-          </DownloadWalletLink> */}
         </ContentContainer>
         <AboutContentContainer isDarkMode={isDarkMode}>
           <CardGrid cols={cards.length} ref={cardsRef}>
@@ -436,7 +413,8 @@ export default function Landing() {
               <Card {...card} icon={isDarkMode ? darkIcon : lightIcon} key={card.title} type={CardType.Secondary} />
             ))}
           </CardGrid>
-          <ProtocolBanner />
+          <br />
+          <br />
           <AboutFooter />
         </AboutContentContainer>
       </PageContainer>

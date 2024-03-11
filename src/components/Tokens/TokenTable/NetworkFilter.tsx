@@ -1,4 +1,3 @@
-import Badge from 'components/Badge'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 import { getChainInfo } from 'constants/chainInfo'
 import { useInfoExplorePageEnabled } from 'featureFlags/flags/infoExplore'
@@ -121,13 +120,6 @@ const CheckContainer = styled.div`
 const NetworkFilterOption = styled(FilterOption)<{ isInfoExplorePageEnabled: boolean }>`
   ${({ isInfoExplorePageEnabled }) => !isInfoExplorePageEnabled && 'min-width: 156px;'}
 `
-const Tag = styled(Badge)`
-  background-color: ${({ theme }) => theme.surface2};
-  color: ${({ theme }) => theme.neutral2};
-  font-size: 10px;
-  opacity: 1;
-  padding: 4px 6px;
-`
 
 export default function NetworkFilter() {
   const theme = useTheme()
@@ -194,21 +186,6 @@ export default function NetworkFilter() {
               </InternalLinkMenuItem>
             )
           })}
-          {/* {BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS.map((network) => {
-            const chainInfo = getChainInfo(network)
-            return (
-              <InternalLinkMenuItem
-                key={network}
-                data-testid={`tokens-network-filter-option-${network}-chain`}
-                disabled
-              >
-                <NetworkLabel>
-                  <ChainLogo chainId={network} size={20} /> {chainInfo.label}
-                </NetworkLabel>
-                <Tag>Coming soon</Tag>
-              </InternalLinkMenuItem>
-            )
-          })} */}
         </MenuTimeFlyout>
       )}
     </StyledMenu>

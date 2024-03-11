@@ -6,7 +6,6 @@ import { BREAKPOINTS } from 'theme'
 import { ExternalLink, StyledRouterLink } from 'theme/components'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 
-import { DiscordIcon, GithubIcon, TwitterIcon } from './Icons'
 import lightEcoImgSrc from './images/eco-logo.svg'
 import darkEcoImgSrc from './images/eco-logo.svg'
 
@@ -28,14 +27,6 @@ const LogoSection = styled.div`
   flex-direction: column;
 `
 
-const LogoSectionLeft = styled(LogoSection)`
-  display: none;
-
-  @media screen and (min-width: ${BREAKPOINTS.lg}px) {
-    display: flex;
-  }
-`
-
 const LogoSectionBottom = styled(LogoSection)`
   display: flex;
 
@@ -52,17 +43,6 @@ const StyledLogo = styled.img`
   @media screen and (min-width: ${BREAKPOINTS.lg}px) {
     display: block;
   }
-`
-
-const SocialLinks = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin: 20px 0 0 0;
-`
-
-const SocialLink = styled.a`
-  display: flex;
 `
 
 const FooterLinks = styled.div`
@@ -116,26 +96,10 @@ const LogoSectionContent = () => {
   return (
     <>
       <StyledLogo src={isDarkMode ? darkEcoImgSrc : lightEcoImgSrc} alt="ETCswap Logo" />
-      <SocialLinks>
-        <SocialLink href="https://ethereumclassic.org/discord" target="_blank" rel="noopener noreferrer">
-          <DiscordIcon size={32} />
-        </SocialLink>
-        <TraceEvent
-          events={[BrowserEvent.onClick]}
-          name={SharedEventName.ELEMENT_CLICKED}
-          element={InterfaceElementName.TWITTER_LINK}
-        >
-          <SocialLink href="https://twitter.com/EthClassicDAO" target="_blank" rel="noopener noreferrer">
-            <TwitterIcon size={32} />
-          </SocialLink>
-        </TraceEvent>
-        <SocialLink href="https://github.com/etcswap" target="_blank" rel="noopener noreferrer">
-          <GithubIcon size={32} />
-        </SocialLink>
-      </SocialLinks>
+
       <Copyright>
-        Made with 💚 for the Original Ethereum Vision
-        <br />© {new Date().getFullYear()} Ethereum Classic DAO
+        Made with ❤️ and 🤬
+        <br />© {new Date().getFullYear()}
       </Copyright>
     </>
   )
@@ -145,10 +109,6 @@ export const AboutFooter = () => {
   const shouldDisableNFTRoutes = useDisableNFTRoutes()
   return (
     <Footer>
-      {/* <LogoSectionLeft>
-        <LogoSectionContent />
-      </LogoSectionLeft> */}
-
       <FooterLinks>
         <LinkGroup>
           <LinkGroupTitle>App</LinkGroupTitle>
@@ -157,32 +117,15 @@ export const AboutFooter = () => {
           {!shouldDisableNFTRoutes && <TextLink to="/nfts">NFTs</TextLink>}
           <TextLink to="/pools">Pools</TextLink>
         </LinkGroup>
-        {/* <LinkGroup>
-          <LinkGroupTitle>Protocol</LinkGroupTitle>
-          <ExternalTextLink href="#">Community</ExternalTextLink>
-          <ExternalTextLink href="#">Governance</ExternalTextLink>
-          <ExternalTextLink href="#">Developers</ExternalTextLink>
-          <ExternalTextLink href="#">Chameleon</ExternalTextLink>
-        </LinkGroup>
-        <LinkGroup>
-          <LinkGroupTitle>Company</LinkGroupTitle>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.CAREERS_LINK}
-          >
-            <ExternalTextLink href="#">Careers</ExternalTextLink>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.BLOG_LINK}
-          >
-            <ExternalTextLink href="#">Blog</ExternalTextLink>
-          </TraceEvent>
-        </LinkGroup> */}
         <LinkGroup>
           <LinkGroupTitle>Community</LinkGroupTitle>
+          <TraceEvent
+            events={[BrowserEvent.onClick]}
+            name={SharedEventName.ELEMENT_CLICKED}
+            element={InterfaceElementName.SUPPORT_LINK}
+          >
+            <ExternalTextLink href="https://tally.so/r/w72Bk0">Partnership</ExternalTextLink>
+          </TraceEvent>
           <TraceEvent
             events={[BrowserEvent.onClick]}
             name={SharedEventName.ELEMENT_CLICKED}
