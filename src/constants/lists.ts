@@ -27,11 +27,12 @@ export const AVALANCHE_LIST =
   'https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/token_list.json'
 export const BASE_LIST =
   'https://raw.githubusercontent.com/ethereum-optimism/ethereum-optimism.github.io/master/optimism.tokenlist.json'
+export const ZIRCUIT_LIST = 'https://raw.githubusercontent.com/emuswap/token-list/main/zircuit.json'
 
 export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST, UNI_UNSUPPORTED_LIST]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UNI_LIST, CLASSIC_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UNI_LIST, CLASSIC_LIST, ZIRCUIT_LIST]
 export const DEFAULT_INACTIVE_LIST_URLS: string[] = [
   UNI_EXTENDED_LIST,
   COMPOUND_LIST,

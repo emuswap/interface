@@ -11,6 +11,7 @@ import {
   CLASSIC_LIST,
   OPTIMISM_LIST,
   PLASMA_BNB_LIST,
+  ZIRCUIT_LIST,
 } from './lists'
 
 export const AVERAGE_L1_BLOCK_TIME = ms(`12s`)
@@ -27,6 +28,8 @@ export const START_BLOCKS: { [key: number]: number } = {
   [ChainId.BNB]: 26324014,
   [ChainId.AVALANCHE]: 31422450,
   [ChainId.BASE]: 1371680,
+  [ChainId.ZIRCUIT]: 5180560,
+  [ChainId.ZIRCUIT_SEPOLIA]: 5180560,
 }
 
 export enum NetworkType {
@@ -274,6 +277,32 @@ const CHAIN_INFO: ChainInfoMap = {
     nativeCurrency: { name: 'Polygon Mumbai Matic', symbol: 'mMATIC', decimals: 18 },
     color: darkTheme.chain_80001,
     backgroundColor: darkTheme.chain_80001_background,
+  },
+  [ChainId.ZIRCUIT]: {
+    networkType: NetworkType.L2,
+    blockWaitMsBeforeWarning: ms(`10m`),
+    bridge: 'https://bridge.zircuit.com/',
+    defaultListUrl: ZIRCUIT_LIST,
+    docs: 'https://docs.zircuit.com/',
+    explorer: 'https://explorer.zircuit.com/',
+    infoLink: 'https://www.zircuit.com/',
+    label: 'Zircuit',
+    nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+    color: darkTheme.chain_48899,
+    backgroundColor: darkTheme.chain_48899_background,
+  },
+  [ChainId.ZIRCUIT_SEPOLIA]: {
+    networkType: NetworkType.L2,
+    blockWaitMsBeforeWarning: ms(`10m`),
+    bridge: 'https://bridge.zircuit.com/',
+    defaultListUrl: ZIRCUIT_LIST,
+    docs: 'https://docs.zircuit.com/',
+    explorer: 'https://explorer.zircuit.com/',
+    infoLink: 'https://www.zircuit.com/',
+    label: 'Zircuit Sepolia',
+    nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+    color: darkTheme.chain_48899,
+    backgroundColor: darkTheme.chain_48899_background,
   },
 } as const
 

@@ -136,6 +136,8 @@ export const FALLBACK_URLS = {
     'https://1rpc.io/base',
     'https://base.meowrpc.com',
   ],
+  [ChainId.ZIRCUIT]: ['https://zircuit.p2pify.com/'],
+  [ChainId.ZIRCUIT_SEPOLIA]: ['https://zircuit1.p2pify.com/'],
 }
 
 /**
@@ -175,4 +177,6 @@ export const RPC_URLS = {
   [ChainId.BNB]: [QUICKNODE_BNB_RPC_URL, ...FALLBACK_URLS[ChainId.BNB]],
   [ChainId.AVALANCHE]: [`https://avalanche-mainnet.infura.io/v3/${INFURA_KEY}`, ...FALLBACK_URLS[ChainId.AVALANCHE]],
   [ChainId.BASE]: [`https://base-mainnet.infura.io/v3/${INFURA_KEY}`, ...FALLBACK_URLS[ChainId.BASE]],
+  [ChainId.ZIRCUIT]: FALLBACK_URLS[ChainId.ZIRCUIT],
+  [ChainId.ZIRCUIT_SEPOLIA]: FALLBACK_URLS[ChainId.ZIRCUIT_SEPOLIA],
 }

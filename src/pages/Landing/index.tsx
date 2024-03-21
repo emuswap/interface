@@ -5,20 +5,15 @@ import { Trace, TraceEvent } from 'analytics'
 import { AboutFooter } from 'components/About/AboutFooter'
 import Card, { CardType } from 'components/About/Card'
 import { MAIN_CARDS, MORE_CARDS } from 'components/About/constants'
-import { useAccountDrawer } from 'components/AccountDrawer'
 import { BaseButton } from 'components/Button'
 import { getChainInfo } from 'constants/chainInfo'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import Swap from 'pages/Swap'
-import { parse } from 'qs'
-import { useEffect, useMemo, useRef } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { useMemo, useRef } from 'react'
 import { Link as NativeLink } from 'react-router-dom'
-import { useAppSelector } from 'state/hooks'
 import styled, { css } from 'styled-components'
 import { BREAKPOINTS } from 'theme'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
-import { TRANSITION_DURATIONS } from 'theme/styles'
 import { Z_INDEX } from 'theme/zIndex'
 
 const PageContainer = styled.div`
@@ -309,30 +304,12 @@ export default function Landing() {
   const chainInfo = getChainInfo(chainId)
   const isDarkMode = useIsDarkMode()
   const cardsRef = useRef<HTMLDivElement>(null)
-  const selectedWallet = useAppSelector((state) => state.user.selectedWallet)
 
   const shouldDisableNFTRoutes = useDisableNFTRoutes()
   const cards = useMemo(
     () => MAIN_CARDS.filter((card) => !(shouldDisableNFTRoutes && card.to.startsWith('/nft'))),
     [shouldDisableNFTRoutes]
   )
-
-  const [accountDrawerOpen] = useAccountDrawer()
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (accountDrawerOpen) {
-      setTimeout(() => {
-        navigate('/swap')
-      }, TRANSITION_DURATIONS.fast)
-    }
-  }, [accountDrawerOpen, navigate])
-
-  const location = useLocation()
-  const queryParams = parse(location.search, { ignoreQueryPrefix: true })
-
-  if (selectedWallet && !queryParams.intro) {
-    return <Navigate to={{ ...location, pathname: '/swap' }} replace />
-  }
 
   return (
     <Trace page={InterfacePageName.LANDING_PAGE} shouldLogImpression>
@@ -364,9 +341,9 @@ export default function Landing() {
             <SubText>
               {shouldDisableNFTRoutes ? (
                 <Trans>
-                  Buy, sell, and explore digital assets on
+                  Concentraded liquidity for the
                   <br />
-                  the most secure smart contract blockchain in the world
+                  latest blockchains.
                 </Trans>
               ) : (
                 <Trans>

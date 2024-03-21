@@ -15,6 +15,7 @@ import { ReactComponent as classic } from './ChainSymbols/classic.svg'
 import { ReactComponent as ethereum } from './ChainSymbols/ethereum.svg'
 import { ReactComponent as optimism } from './ChainSymbols/optimism.svg'
 import { ReactComponent as polygon } from './ChainSymbols/polygon.svg'
+import { ReactComponent as zircuit } from './ChainSymbols/zircuit.svg'
 
 type SVG = FunctionComponent<React.SVGProps<SVGSVGElement>>
 type ChainUI = { Symbol: SVG; bgColor: string; textColor: string }
@@ -88,6 +89,18 @@ export function getChainUI(chainId: ChainId, darkMode: boolean): ChainUI | undef
         Symbol: base,
         bgColor: '#0052FF33',
         textColor: '#0052FF',
+      }
+    case ChainId.ZIRCUIT:
+      return {
+        Symbol: zircuit,
+        bgColor: '#2B7E2133',
+        textColor: '#2B7E21',
+      }
+    case ChainId.ZIRCUIT_SEPOLIA:
+      return {
+        Symbol: zircuit,
+        bgColor: '#2B7E2133',
+        textColor: '#2B7E21',
       }
     default:
       return undefined

@@ -106,6 +106,8 @@ export const colors = {
   networkOptimismSoft: 'rgba(255, 4, 32, 0.05)',
   networkPolygon: '#A457FF',
   networkPolygonSoft: 'rgba(164, 87, 255, 0.5)',
+  networkZircuit: '#2B7E21',
+  networkZircuitSoft: 'rgba(43, 126, 33, 0.05)',
   //NEW COLORS FOR SPORE - need to define light/dark here cause they are root colors now (different system)
   neutral1_dark: '#FFFFFF',
   neutral2_dark: '#9B9B9B',
@@ -174,6 +176,8 @@ const commonTheme = {
   chain_80001_background: colors.networkPolygonSoft,
   chain_8453: colors.networkBase,
   chain_8453_background: colors.networkBaseSoft,
+  chain_48899: colors.networkZircuit,
+  chain_48899_background: colors.networkZircuit,
   promotional: colors.networkClassic,
   promotional_background: colors.networkClassicSoft,
 

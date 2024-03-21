@@ -39,16 +39,6 @@ export function openDownloadApp({ element, isAndroidGALaunched }: OpenDownloadAp
   }
 }
 
-export const getDownloadAppLinkProps = ({ element, isAndroidGALaunched }: OpenDownloadAppOptions) => {
-  return {
-    href: APP_DOWNLOAD_LINKS[element],
-    onClick(e: { preventDefault: () => void }) {
-      e.preventDefault()
-      openDownloadApp({ element, isAndroidGALaunched })
-    },
-  }
-}
-
 type AnalyticsLinkOptions = {
   element: InterfaceElementName
   appPlatform?: AppDownloadPlatform
