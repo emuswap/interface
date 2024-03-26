@@ -6200,7 +6200,7 @@
 
 "@uniswap/universal-router-sdk@^1.5.4", "@uniswap/universal-router-sdk@git+https://github.com/emuswap/universal-router-sdk.git#9ad12a794d54099e5bfb488a93fc47703a247784", "@uniswap/universal-router-sdk@git+https://github.com/emuswap/universal-router-sdk.git#emuswap":
   version "2.0.1"
-  resolved "git+https://github.com/emuswap/universal-router-sdk.git#b3236b07324fe26a5cf96c8158db237af4052a01"
+  resolved "git+https://github.com/emuswap/universal-router-sdk.git#23747c4064656be6ed81ed1d1097afa6569a1831"
   dependencies:
     "@uniswap/permit2-sdk" "^1.2.0"
     "@uniswap/router-sdk" "git+https://github.com/emuswap/router-sdk.git#emuswap"
