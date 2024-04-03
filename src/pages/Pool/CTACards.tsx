@@ -62,7 +62,7 @@ const ResponsiveColumn = styled(AutoColumn)`
 export default function CTACards() {
   return (
     <CTASection>
-      <CTA href="https://docs.emuswap.com">
+      <CTA href="https://gitbook.com">
         <ResponsiveColumn>
           <HeaderText>
             <Trans>Learn about providing liquidity</Trans> ↗
