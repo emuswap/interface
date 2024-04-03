@@ -6,8 +6,8 @@ import WETH_ABI from 'abis/weth.json'
 import { SupportedInterfaceChain } from 'constants/chains'
 import { DEPRECATED_RPC_PROVIDERS } from 'constants/providers'
 import { WRAPPED_NATIVE_CURRENCY } from 'constants/tokens'
-import { getPermit2 } from 'utils/getPermit2'
 import { getContract } from 'utils'
+import { getPermit2 } from 'utils/getPermit2'
 
 import { ApproveInfo, WrapInfo } from './types'
 

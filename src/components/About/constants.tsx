@@ -13,7 +13,7 @@ export const MAIN_CARDS = [
   {
     to: '/swap',
     title: 'Swap Digital Assets',
-    description: 'Buy, sell, and explore tokens on other EVM compatible layer 1 & 2 chains.',
+    description: 'Buy, sell, and explore tokens.',
     cta: 'Trade Digital Assets',
     darkBackgroundImgSrc: swapCardImgSrc,
     lightBackgroundImgSrc: swapCardImgSrc,
@@ -30,10 +30,10 @@ const StyledCardLogo = styled.img`
 
 export const MORE_CARDS = [
   {
-    to: 'https://bridge.zircuit.com/',
+    to: 'https://axelar.network/',
     external: true,
     title: 'Bridge Assets',
-    description: 'Bridge assets from Layer 1 to Layer 2 and vice versa.',
+    description: 'Bridge assets between layers and chains.',
     lightIcon: <DollarSign color={lightTheme.neutral3} size={48} />,
     darkIcon: <StyledCardLogo src={darkDollarImgSrc} alt="Earn" />,
     cta: 'Bridge Now',
@@ -49,7 +49,7 @@ export const MORE_CARDS = [
     elementName: InterfaceElementName.ABOUT_PAGE_EARN_CARD,
   },
   {
-    to: 'https://docs.emuswap.com/',
+    to: 'https://gitbook.com/',
     external: true,
     title: 'Learn',
     description: 'Learn on the protocol level and get involved.',

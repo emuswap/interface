@@ -4,7 +4,7 @@ import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import { Box } from 'nft/components/Box'
 import { Column, Row } from 'nft/components/Flex'
-import { ApprovedCheckmarkIcon, EllipsisIcon, GovernanceIcon, PoolIcon } from 'nft/components/icons'
+import { EllipsisIcon, GovernanceIcon, PoolIcon } from 'nft/components/icons'
 import { body } from 'nft/css/common.css'
 import { ReactNode, useReducer, useRef } from 'react'
 import { Twitter } from 'react-feather'
@@ -102,15 +102,7 @@ export const MenuDropdown = () => {
                     </PrimaryMenuRow.Text>
                   </PrimaryMenuRow>
                 </Box>
-                <PrimaryMenuRow href="https://tally.so/r/w72Bk0" close={toggleOpen}>
-                  <Icon>
-                    <ApprovedCheckmarkIcon width={24} height={24} color={theme.neutral1} />
-                  </Icon>
-                  <PrimaryMenuRow.Text>
-                    <Trans>Partnership</Trans>
-                  </PrimaryMenuRow.Text>
-                </PrimaryMenuRow>
-                <PrimaryMenuRow href="https://docs.emuswap.com" close={toggleOpen}>
+                <PrimaryMenuRow href="https://www.gitbook.com/" close={toggleOpen}>
                   <Icon>
                     <GovernanceIcon width={24} height={24} color={theme.neutral1} />
                   </Icon>
@@ -118,7 +110,7 @@ export const MenuDropdown = () => {
                     <Trans>Documentation</Trans>
                   </PrimaryMenuRow.Text>
                 </PrimaryMenuRow>
-                <PrimaryMenuRow href="https://x.com/_emuswap">
+                <PrimaryMenuRow href="https://twitter.com/">
                   <Icon>
                     <Twitter width={24} height={24} color={theme.neutral1} />
                   </Icon>

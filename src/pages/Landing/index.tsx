@@ -332,7 +332,7 @@ export default function Landing() {
         <ContentContainer isDarkMode={isDarkMode}>
           <TitleText isDarkMode={isDarkMode} color={chainInfo?.color}>
             {shouldDisableNFTRoutes ? (
-              <Trans>Trade Tokens on the Latest Layers</Trans>
+              <Trans>Trade Tokens on Foobar</Trans>
             ) : (
               <Trans>Trade Crypto and NFTs on Ethereum Classic</Trans>
             )}
@@ -340,11 +340,7 @@ export default function Landing() {
           <SubTextContainer>
             <SubText>
               {shouldDisableNFTRoutes ? (
-                <Trans>
-                  Concentraded liquidity for the
-                  <br />
-                  latest blockchains.
-                </Trans>
+                <Trans>On Chain Concentraded Liquidity</Trans>
               ) : (
                 <Trans>
                   Buy, sell, and explore digital assets & collectables on

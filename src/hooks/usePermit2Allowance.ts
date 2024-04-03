@@ -4,10 +4,10 @@ import { AVERAGE_L1_BLOCK_TIME } from 'constants/chainInfo'
 import { PermitSignature, usePermitAllowance, useUpdatePermitAllowance } from 'hooks/usePermitAllowance'
 import { useRevokeTokenAllowance, useTokenAllowance, useUpdateTokenAllowance } from 'hooks/useTokenAllowance'
 import useInterval from 'lib/hooks/useInterval'
-import { getPermit2 } from 'utils/getPermit2'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { TradeFillType } from 'state/routing/types'
 import { useHasPendingApproval, useHasPendingRevocation, useTransactionAdder } from 'state/transactions/hooks'
+import { getPermit2 } from 'utils/getPermit2'
 
 enum ApprovalState {
   PENDING,

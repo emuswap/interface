@@ -113,7 +113,7 @@ export const AboutFooter = () => {
         <LinkGroup>
           <LinkGroupTitle>App</LinkGroupTitle>
           <TextLink to="/swap">Swap</TextLink>
-          <TextLink to="/tokens">Tokens</TextLink>
+          {/* <TextLink to="/tokens">Tokens</TextLink> */}
           {!shouldDisableNFTRoutes && <TextLink to="/nfts">NFTs</TextLink>}
           <TextLink to="/pools">Pools</TextLink>
         </LinkGroup>
@@ -124,21 +124,14 @@ export const AboutFooter = () => {
             name={SharedEventName.ELEMENT_CLICKED}
             element={InterfaceElementName.SUPPORT_LINK}
           >
-            <ExternalTextLink href="https://tally.so/r/w72Bk0">Partnership</ExternalTextLink>
+            <ExternalTextLink href="https://www.gitbook.com/">Documentation</ExternalTextLink>
           </TraceEvent>
           <TraceEvent
             events={[BrowserEvent.onClick]}
             name={SharedEventName.ELEMENT_CLICKED}
             element={InterfaceElementName.SUPPORT_LINK}
           >
-            <ExternalTextLink href="https://docs.emuswap.com/">Documentation</ExternalTextLink>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.SUPPORT_LINK}
-          >
-            <ExternalTextLink href="https://twitter.com/_emuswap">Twitter</ExternalTextLink>
+            <ExternalTextLink href="https://twitter.com/">Twitter</ExternalTextLink>
           </TraceEvent>
         </LinkGroup>
       </FooterLinks>
